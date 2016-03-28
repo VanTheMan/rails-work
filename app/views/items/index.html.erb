@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+        </ol>
+    </div>
+</div>
+    <!-- /.row -->
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group">
+            <% @categories.each do |cat| %>
+                <a href="<%= category_path(cat) %>" class="list-group-item active">
+                   <%= cat.name %>
+                </a>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <% @items.each do |item| %>
+            <div class="col-md-7">
+                <a href="<%= item_path(item) %>">
+                    <img class="img-responsive" src="<%= image_tag("sticker.jpg") %>" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3><a href="<%= item_path(item) %>"><%= item.title %></a></h3>
+                <h4><%= item.slogan %></h4>
+                <p><%= item.description %></p>
+                <a class="btn btn-primary" href="<%= item_path(item) %>"">View Product <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        <% end %>
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <%= paginate @items %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
