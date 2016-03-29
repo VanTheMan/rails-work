@@ -9,8 +9,12 @@
 <body>
 <%= render 'layouts/shared/header' %>
 <div class="container">
-  <!--<p class="notice"><%= notice %></p>-->
-  <!--<p class="alert"><%= alert %></p>-->
+  <% flash.each do |key, msg| %>
+    <%= content_tag :div, class: "alert alert-#{key}", id: "notice" do %>
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <%= msg %>
+    <% end %>
+  <% end %>
   <%= yield %>  
 </div>
 <%= render 'layouts/shared/footer' %>
