@@ -10,6 +10,15 @@
     Category.create(name: name)
 end
 
+def get_image
+    Dir.entries("#{Rails.root}/app/assets/images/").select {|f| !File.directory? f}.sample
+end
+
 20.times do
-   Fabricate(:item)
+   it = Fabricate(:item, category: Category.all.sample, img_url: get_image)
+   3.times do
+        Fabricate(:review, item: it)
+   end
+   it.stars = it.reviews.map(&:stars).reduce(:+)/3
+   it.save
 end

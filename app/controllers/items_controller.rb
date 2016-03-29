@@ -6,5 +6,6 @@ class ItemsController < ApplicationController
     
     def show
         @item = Item.find(params[:id])
+        @related_items = @item.category.items - [@item]
     end
 end

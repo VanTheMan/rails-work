@@ -1,1 +1,163 @@
-show.html.erb
+<div class="row">
+        
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li><a href="<%= category_path(@item.category) %>"> <%= @item.category.name %> </a></li>
+              <li class="active"><%= @item.title %></li>
+            </ol>
+          </div>
+        </div>
+        
+        <!-- Product Item Heading -->
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 style="margin-top: 0px;" class="page-header"><%= @item.title %>
+              <small><%= @item.slogan %></small>
+            </h1>
+          </div>
+        </div>
+        <!-- /.row -->
+        
+        <!-- Product Item Row -->
+        <div class="row">
+          
+          <div class="col-md-8">
+            <%= image_tag(@item.img_url, class: "img-responsive") %>
+          </div>
+          
+          <div class="col-md-4">
+            <h3>Product Description</h3>
+            
+            <div class="ratings" style="padding-left: 0px;">
+              <% if @item.reviews.count == 1 %>
+              <p class="pull-right"><%= @item.reviews.count %> review</p>
+              <% else %>
+              <p class="pull-right"><%= @item.reviews.count %> reviews</p>
+              <% end %>
+              <p>
+                <% (1..5).to_a.each do |num| %>
+                    <span class="<%= if @item.stars >= num 
+                                        'glyphicon glyphicon-star' 
+                                    else 
+                                        'glyphicon glyphicon-star-empty' 
+                                    end %>"
+                    >
+                    </span>
+                <% end %>
+                
+              </p>
+            </div>
+            
+            <p>
+              <%= @item.description %>
+            </p>
+            
+            <form action="#" role="form" method="post">
+              <button class="btn btn-primary" type="submit">
+                Add to cart
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </button>
+            </form>
+            
+          </div>
+          
+        </div>
+        <!-- /.row -->
+        
+        <!-- Related Products Row -->
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <h3 class="page-header">Latest Reviews</h3>
+          </div>
+          <div class="col-lg-12">
+            
+            <% @item.reviews.each do |review| %>
+                <!-- Comment -->
+                <div>
+                  <div>
+                    <h4 class="media-heading"><%= Faker::Name.name %>
+                      <small><%= review.created_at %></small>
+                    </h4>
+                    <div class="ratings" style="padding-left: 0px;">
+                      
+                      <% (1..5).to_a.each do |num| %>
+                            <span class="<%= if @item.stars >= num 
+                                            'glyphicon glyphicon-star' 
+                                            else 
+                                            'glyphicon glyphicon-star-empty' 
+                                            end %>"
+                            >
+                            </span>
+                      <% end %>
+                      
+                    </div>
+                    <%= review.content %>
+                  </div>
+                </div>
+                
+                <hr />
+            
+            <% end %>
+          </div>
+          
+          
+        </div>
+        
+        <!-- Comments Form -->
+        <div class="well">
+          <h4>Add a Review:</h4>
+          <form action="/item/{{item._id}}/reviews" role="form" method="post">
+            <div class="form-group">
+              <label for="review">Review:</label>
+              <textarea name="review" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter display name">
+            </div>
+            <div class="form-group">
+              
+              <label class="radio-inline">
+                <input type="radio" name="stars" id="stars" value="1"> 1 star
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="stars" id="stars" value="2"> 2 star
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="stars" id="stars" value="3"> 3 star
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="stars" id="stars" value="4"> 4 star
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="stars" id="stars" value="5" checked> 5 star
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+          </form>
+        </div>
+        
+        <hr>
+        
+        <!-- Related Products Row -->
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <h3 class="page-header">Related Products</h3>
+          </div>
+          
+          <% @related_items.each do |item| %>
+              <div class="col-sm-3 col-xs-6">
+                <a href="<%= item_path(item) %>">
+                    <%= image_tag(item.img_url, class: "img-responsive portfolio-item") %>
+                </a>
+              </div>
+          <% end %>
+          
+        </div>
+        <!-- /.row -->
+        
+      </div>
