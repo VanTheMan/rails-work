@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'items#index'
-  resources :items
+  resources :items do
+    collection do
+      get 'search'
+    end
+  end
   resources :categories
   resources :reviews
   # The priority is based upon order of creation: first created -> highest priority.
