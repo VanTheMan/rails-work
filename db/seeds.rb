@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+puts "Create category"
 ['Book', 'Sport', 'Electronic', 'Movie', 'Food'].each do |name|
     Category.create(name: name)
 end
@@ -14,6 +15,7 @@ def get_image
     Dir.entries("#{Rails.root}/app/assets/images/").select {|f| !File.directory? f}.sample
 end
 
+puts "Create items"
 20.times do
    it = Fabricate(:item, category: Category.all.sample, img_url: get_image)
    3.times do
@@ -21,4 +23,14 @@ end
    end
    it.stars = it.reviews.map(&:stars).reduce(:+)/3
    it.save
+end
+
+puts "Create users"
+for i in (1..3) do
+  Fabricate(:user, email: "user#{i}@mart.com")
+end
+
+puts "Create items in cart"
+Cart.all.each do |cart|
+    cart.items << Item.all.sample(3)
 end
