@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
     def show
         @item = Item.find(params[:id])
         @related_items = @item.category.items - [@item]
+        @new_reivew = Review.new
     end
     
     def search

@@ -15,19 +15,19 @@ def get_image
     Dir.entries("#{Rails.root}/app/assets/images/").select {|f| !File.directory? f}.sample
 end
 
+puts "Create users"
+for i in (1..3) do
+  Fabricate(:user, email: "user#{i}@mart.com")
+end
+
 puts "Create items"
 20.times do
    it = Fabricate(:item, category: Category.all.sample, img_url: get_image)
    3.times do
-        Fabricate(:review, item: it)
+        Fabricate(:review, item: it, user: User.all.sample)
    end
    it.stars = it.reviews.map(&:stars).reduce(:+)/3
    it.save
-end
-
-puts "Create users"
-for i in (1..3) do
-  Fabricate(:user, email: "user#{i}@mart.com")
 end
 
 puts "Create items in cart"

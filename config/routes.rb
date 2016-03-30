@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    resources :reviews 
   end
   resources :categories
-  resources :reviews
   resources :users do
     resources :carts do
       member do
