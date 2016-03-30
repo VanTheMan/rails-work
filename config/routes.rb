@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :users do
     resources :carts do
-      member do
-        post 'add_item'
-        post 'remove_item'
+      collection do
+        post 'add'
+        post 'remove'
       end
     end
   end
