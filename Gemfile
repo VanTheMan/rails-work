@@ -30,6 +30,8 @@ gem 'kaminari'
 gem 'devise'
 
 gem 'simple_form'
+
+gem 'activemerchant'  # Online Paypal payment
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

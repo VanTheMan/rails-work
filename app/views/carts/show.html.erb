@@ -27,7 +27,7 @@
                 <td><a href="<%= item_path(item) %>"><%= item.title %></a></td>
                 <td class="muted center_text"><a href="<%= item_path(item) %>"><%= image_tag(item.img_url, width: 300) %></a></td>
                 <td>
-                    <select name="quantity" onchange="this.form.submit()">
+                    <select class="form-control" name="quantity" onchange="this.form.submit()">
                         <option value="0">0 (Remove)</option>
                         <% (1..25).each do |num| %>
                             <option value="<%= num %>"><%= num %></option>
@@ -35,10 +35,10 @@
                     </select>
                 </td>
                 <td>
-                    <%= item.price %>
+                    <strong><%= item.price %></strong>
                 </td>
                 <td id="item-price">
-                    0
+                    <strong>0</strong>
                 </td>
 
             </tr>
