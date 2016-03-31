@@ -18,7 +18,15 @@ Happy coding!
 The Cloud9 IDE team
 
 
-## Support & Documentation
+## HOW TO RUN IN LOCAL
+1. git clone git@github.com:VanTheMan/rails-work.git
+2. cd rails-work
+3. bundle install
+4. rake db:migrate (or bundle exec rake db:migrate)
+5. rake db:seed (or bundle exec rake db:seed)
+6. rails seed
+7. ==> Browse in localhost:3000 (user email to login: user1@mart.com, pass: 123456a@)
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+Happy shopping!!!
+toannm
+
