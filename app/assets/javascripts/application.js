@@ -16,3 +16,18 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
+$(document).ready(function(){
+  $('.item-quantity').on('change', function(){
+    console.log(this.value);
+    console.log($(this).parent().siblings(".item-price").html());
+    var numItem = this.value;
+    var price = parseFloat($(this).parent().siblings(".item-price").html());
+    console.log(price * numItem);
+    $(this).parent().siblings(".total-item-price").text(price * numItem);
+    var sum = 0;
+    $('td.total-item-price').map(function(){
+      sum += parseFloat($(this).html());
+    });
+    $('#total-items-price').text(sum);
+  });
+});

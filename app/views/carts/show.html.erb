@@ -27,18 +27,18 @@
                 <td><a href="<%= item_path(item) %>"><%= item.title %></a></td>
                 <td class="muted center_text"><a href="<%= item_path(item) %>"><%= image_tag(item.img_url, width: 300) %></a></td>
                 <td>
-                    <select class="form-control" name="quantity" onchange="this.form.submit()">
+                    <select class="form-control item-quantity" name="quantity">
                         <option value="0">0 (Remove)</option>
                         <% (1..25).each do |num| %>
                             <option value="<%= num %>"><%= num %></option>
                         <% end %>
                     </select>
                 </td>
-                <td>
-                    <strong><%= item.price %></strong>
+                <td class="item-price">
+                    <%= item.price %>
                 </td>
-                <td id="item-price">
-                    <strong>0</strong>
+                <td class="total-item-price">
+                    0
                 </td>
 
             </tr>
@@ -49,7 +49,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td id="total-price"><strong>0</strong></td>
+                <td id="total-items-price"><strong>0</strong></td>
             </tr>
             </tbody>
         </table>
