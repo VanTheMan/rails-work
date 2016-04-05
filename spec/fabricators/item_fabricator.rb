@@ -1,5 +1,5 @@
 Fabricator(:item) do
-   title { Faker::Lorem.word }
+   title { Faker::Lorem.sentence }
    slogan { Faker::Lorem.sentence(5) }
    description { Faker::Lorem.paragraph(3) }
    price Random.new.rand(100)

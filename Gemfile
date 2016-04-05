@@ -58,6 +58,8 @@ group :development, :test do
   gem 'sqlite3'
 
   gem "capybara"
+
+  gem 'shoulda-matchers', require: false
 end
 
 group :development do
