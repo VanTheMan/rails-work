@@ -3,6 +3,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @items = @category.items.page(params[:page])
     @categories = Category.all
-    render "items/index"
+    respond_to do |format|
+      format.html { render "items/index" }
+      format.json { render json: @category.as_json(include: :items) }
+    end
   end
 end
