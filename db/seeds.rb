@@ -16,6 +16,7 @@ def get_image
 end
 
 puts "Create users"
+Fabricate(:user, email: "admin@mart.com")
 for i in (1..3) do
   Fabricate(:user, email: "user#{i}@mart.com")
 end

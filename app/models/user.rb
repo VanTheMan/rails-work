@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_one :cart, dependent: :destroy
   
   after_create :create_cart
+
+  def is_admin
+    self.email.include?("admin")
+  end
   
   protected
     def create_cart
