@@ -1,4 +1,6 @@
 require "bundler/setup"
+require 'devise'
+require 'support/controller_helpers'
 
 ::Bundler.require(:default, :test)
 
@@ -33,6 +35,8 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
   config.include Shoulda::Matchers
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelpers, :type => :controller
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
@@ -53,6 +57,7 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
